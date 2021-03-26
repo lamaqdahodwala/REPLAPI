@@ -9,7 +9,7 @@ class info():
     print("OWNERS:\nMain Owner: JBYT27\nSide Owner(weird sidekick): darkdarcool")
 
 class assets(): 
-  async def replit_avatar_get(name = None):
+  async def replit_avatar_get(self, name = None):
     if (name == None):
       exit("Please fill out the name parameter!")
     else:
@@ -19,7 +19,7 @@ class assets():
         return user.avatar
       except:
         exit(f"ERROR: Cannot load {name}'s avatar!") 
-  async def replit_cycle_get(name = None):
+  async def replit_cycle_get(self, name = None):
     if (name == None):
       exit("Please fill out the name parameter!")
     else:
@@ -29,7 +29,7 @@ class assets():
         return user.cycles
       except:
         exit(f"ERROR: Cannot load {name}'s cycles!")
-  async def replit_name_get(name = None):
+  async def replit_name_get(self, name = None):
     if (name == None):
       exit("Please fill out the name parameter!")
     else:
@@ -39,7 +39,7 @@ class assets():
         return user.full_name
       except:
         exit(f"ERROR: Cannot load {name}'s name!")
-  async def replit_bio_get(name = None):
+  async def replit_bio_get(self, name = None):
     if (name == None):
       exit("Please fill out the name parameter!")
     else:
@@ -55,7 +55,7 @@ def replit_user():
       return owner
     except:
       exit("ERROR: No such replit account exists!")
-def replit_avatar(name = None):
+def replit_avatar(self, name = None):
   if (name == None):
     exit("Please fill out the name parameter!")
   else:
@@ -64,7 +64,7 @@ def replit_avatar(name = None):
       return e
     except:
       exit(f"ERROR: Cannot find {name}'s avatar!")
-def replit_bio(name = None):
+def replit_bio(self, name = None):
   if (name == None):
     exit("Please fill out the name parameter!")
   else:
@@ -73,7 +73,7 @@ def replit_bio(name = None):
       return e
     except:
       exit(f"ERROR: Cannot find {name}'s bio!")
-def replit_name(name = None):
+def replit_name(self, name = None):
   if (name == None):
     exit("Please fill out the name parameter!")
   else:
@@ -82,7 +82,7 @@ def replit_name(name = None):
       return e
     except:
       exit(f"ERROR: Cannot find {name}'s name!")
-def replit_cycles(name = None):
+def replit_cycles(self, name = None):
     if name == None:
       exit("ERROR: You didn't fill out the name parameter!")
     else:
@@ -92,7 +92,7 @@ def replit_cycles(name = None):
       except:
         exit("ERROR: Cannot find " + name + "'s cycles!")
 
-def replit_langs(name = None):
+def replit_langs(self, name = None):
     if name == None:
       exit("ERROR: You didn't fill out the name parameter!")
     else:
@@ -114,7 +114,7 @@ def replit_langs(name = None):
       except:
         exit("ERROR: Cannot find " + name + "'s langs!")
 
-def replit_post(name = None):#latest post
+def replit_post(self, name = None):#latest post
     if name == None:
       exit("ERROR: You didn't fill out the name parameter!")
     else:
@@ -129,7 +129,7 @@ def replit_post(name = None):#latest post
       except:
        exit("ERROR: Cannot find "+ name+"'s hottest post!")
   
-def replit_posts(name = None):#all posts
+def replit_posts(self, name = None):#all posts
     if name == None:
       exit("ERROR: You didn't fill out the name parameter!")
     else:
@@ -145,7 +145,7 @@ def replit_posts(name = None):#all posts
       except:
         exit("ERROR: Cannot find "+ name+"'s posts!")
   
-def replit_comment(name = None):
+def replit_comment(self, name = None):
   if name == None:
       exit("ERROR: You didn't fill out the name parameter!")
   else:
@@ -158,7 +158,7 @@ def replit_comment(name = None):
       except:
         exit("ERROR: Cannot find "+ name+"'s hottest comment!") 
   
-def replit_comments(name = None):
+def replit_comments(self, name = None):
     if name == None:
       exit("ERROR: You didn't fill out the name parameter!")
     else:
