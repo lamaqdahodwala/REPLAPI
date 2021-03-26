@@ -2,10 +2,10 @@ import requests, os, json, repltalk, asyncio, getpass
 from bs4 import BeautifulSoup
 
 class info(): 
-  def version():
+  def version(self):
     print("VERSION: 0.0.3")
 
-  def owners():
+  def owners(self):
     print("OWNERS:\nMain Owner: JBYT27\nSide Owner(weird sidekick): darkdarcool")
 
 class assets(): 
