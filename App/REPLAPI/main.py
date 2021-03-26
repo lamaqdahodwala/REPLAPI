@@ -148,7 +148,7 @@ class User():
         except:
           exit("ERROR: Cannot find "+name+"'s comments!")
 
-  def replit_avatar(name=None):
+def replit_avatar(name=None):
     if name is None:
       exit('ERROR: You didnt fill out the name parameter!')
     else:
@@ -181,7 +181,7 @@ class AsyncUser():
 			exit('ERROR: Cannot find name', 1)
 		
 	async def replit_langs(self):
-
+    pass
 	
   
 
@@ -192,5 +192,23 @@ class info():
   def owners():
     print("OWNERS:\nMain Owner: JBYT27\nSide Owne`r(weird sidekick): darkdarcool\n The best one: LAMAQDAHODWALA")
 
+<<<<<<< Updated upstream
 if __name__ == '__main__':
 	print(replit_avatar('LAMAQDAHODWALA'))
+=======
+
+  
+def replit_comment(name = None):
+  if name == None:
+      exit("ERROR: You didn't fill out the name parameter!")
+  else:
+      try:
+        post = requests.get("https://replit.com/@" + name + "?tab=comments")
+        soup = BeautifulSoup(post.content, 'html.parser')
+        for data in soup.find("p"):
+          return (data.get_text())
+          break # keep this here so it prints once
+      except:
+        exit("ERROR: Cannot find "+ name+"'s hottest comment!") 
+  
+>>>>>>> Stashed changes
