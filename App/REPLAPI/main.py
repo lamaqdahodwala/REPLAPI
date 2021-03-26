@@ -192,10 +192,6 @@ class info():
   def owners():
     print("OWNERS:\nMain Owner: JBYT27\nSide Owne`r(weird sidekick): darkdarcool\n The best one: LAMAQDAHODWALA")
 
-<<<<<<< Updated upstream
-if __name__ == '__main__':
-	print(replit_avatar('LAMAQDAHODWALA'))
-=======
 
   
 def replit_comment(name = None):
@@ -211,4 +207,3 @@ def replit_comment(name = None):
       except:
         exit("ERROR: Cannot find "+ name+"'s hottest comment!") 
   
->>>>>>> Stashed changes
