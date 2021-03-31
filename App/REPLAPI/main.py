@@ -59,124 +59,137 @@ class assets():
 		except:
 		exit(f"ERROR: Cannot load {name}'s bio!")
 def replit_user():
-	try:
-		owner = os.environ['REPL_OWNER']
-		return owner
-	except:
-		exit("ERROR: No such replit account exists!")
-def replit_avatar(self, name = None):
-	if (name == None):
-	exit("Please fill out the name parameter!")
-	else:
-	try:
-		e = asyncio.run(assets.replit_avatar_get(f"{name}"))
-		return e
-	except:
-		exit(f"ERROR: Cannot find {name}'s avatar!")
-def replit_bio(self, name = None):
-	if (name == None):
-	exit("Please fill out the name parameter!")
-	else:
-	try:
-		e = asyncio.run(assets.replit_bio_get(f"{name}"))
-		return e
-	except:
-		exit(f"ERROR: Cannot find {name}'s bio!")
-def replit_name(self, name = None):
-	if (name == None):
-	exit("Please fill out the name parameter!")
-	else:
-	try:
-		e = asyncio.run(assets.replit_name_get(f"{name}"))
-		return e
-	except:
-		exit(f"ERROR: Cannot find {name}'s name!")
-def replit_cycles(self, name = None):
-	if name == None:
-		exit("ERROR: You didn't fill out the name parameter!")
-	else:
-		try:
-		e = asyncio.run(assets.replit_cycle_get(f"{name}"))
-		return e
-		except:
-		exit("ERROR: Cannot find " + name + "'s cycles!")
+    try:
+      owner = os.environ['REPL_OWNER']
+      return owner
+    except:
+      exit("ERROR: No such replit account exists!")
+def replit_avatar(name = None):
+  if (name == None):
+    exit("Please fill out the name parameter!")
+  else:
+    try:
+      e = asyncio.run(assets.replit_avatar_get(f"{name}"))
+      return e
+    except:
+      exit(f"ERROR: Cannot find {name}'s avatar!")
+def replit_bio(name = None):
+  if (name == None):
+    exit("Please fill out the name parameter!")
+  else:
+    try:
+      e = asyncio.run(assets.replit_bio_get(f"{name}"))
+      return e
+    except:
+      exit(f"ERROR: Cannot find {name}'s bio!")
+def replit_name(name = None):
+  if (name == None):
+    exit("Please fill out the name parameter!")
+  else:
+    try:
+      e = asyncio.run(assets.replit_name_get(f"{name}"))
+      return e
+    except:
+      exit(f"ERROR: Cannot find {name}'s name!")
+def replit_cycles(name = None):
+    if name == None:
+      exit("ERROR: You didn't fill out the name parameter!")
+    else:
+      try:
+        e = asyncio.run(assets.replit_cycle_get(f"{name}"))
+        return e
+      except:
+        exit("ERROR: Cannot find " + name + "'s cycles!")
+def replit_langs(name = None, extra = None):
+    sun = 0
+    if name == None:
+      exit("ERROR: You didn't fill out the name parameter!")
+    else:
+      if (extra == None):
+        pass
+      else:
+        if (extra == "all"):
+          sun = 1
+      try:
+        link = requests.get('https://replit.com/data/profiles/' +name )
+        data = link.json()
+        #print(data)
+        els = list(data.items())
+        all = els[-1]
+        if ("hacker" in all):
+          all = els[-2]
+        if ("isTeam" in all):
+          all = els[-1]
+        all = list(all)
+        stuff = all[1]
+        stuff = str(stuff)
+        stuff = stuff.replace("'", "")
+        stuff = stuff.replace("[", "")
+        stuff = stuff.replace("]", "")
+        stuff = stuff.replace(" ", "")
+        li = list(stuff.split(","))
+        if (sun == 1):
+          sun = 2
+          return li, sun
+        return (li)
+      except:
+        exit("ERROR: Cannot find " + name + "'s langs!")
 
-def replit_langs(self, name = None):
-	if name == None:
-		exit("ERROR: You didn't fill out the name parameter!")
-	else:
-		try:
-		link = requests.get('https://replit.com/data/profiles/' +name )
-		data = link.json()
-		#print(data)
-		els = list(data.items())
-		all = els[-2]
-		all = list(all)
-		stuff = all[1]
-		stuff = str(stuff)
-		stuff = stuff.replace("'", "")
-		stuff = stuff.replace("[", "")
-		stuff = stuff.replace("]", "")
-		stuff = stuff.replace(" ", "")
-		li = list(stuff.split(","))
-		return (li)
-		except:
-		exit("ERROR: Cannot find " + name + "'s langs!")
-
-def replit_post(self, name = None):#latest post
-	if name == None:
-		exit("ERROR: You didn't fill out the name parameter!")
-	else:
-		#user = os.environ["REPL_OWNER"]
-		try:
-		post = requests.get("https://replit.com/@"+ name +"?tab=posts")#name
-		soup = BeautifulSoup(post.content, 'html.parser')
-		html1 = soup.find("div", {"class":"jsx-2329710370 board-post-list-item-post-title"}).get_text()
-		return html1
-		#b = a.replace('</div>','')
-		#return b
-		except:
-		 exit("ERROR: Cannot find "+ name+"'s hottest post!")
-	
-def replit_posts(self, name = None):#all posts
-	if name == None:
-		exit("ERROR: You didn't fill out the name parameter!")
-	else:
-		try:
-		post = requests.get("https://replit.com/@"+ name +"?tab=posts")#name
-		soup = BeautifulSoup(post.content, 'html.parser')
-		html1 = soup.find_all("div", {"class":"jsx-2329710370 board-post-list-item-post-title"})#.get_text()
-		all_text = []
-		for i in html1:
-			all_text.append(i.get_text())
-		return '\n'.join(all_text)
-		
-		except:
-		exit("ERROR: Cannot find "+ name+"'s posts!")
-	
-def replit_comment(self, name = None):
-	if name == None:
-		exit("ERROR: You didn't fill out the name parameter!")
-	else:
-		try:
-		post = requests.get("https://replit.com/@" + name + "?tab=comments")
-		soup = BeautifulSoup(post.content, 'html.parser')
-		for data in soup.find("p"):
-			return (data.get_text())
-			break # keep this here so it prints once
-		except:
-		exit("ERROR: Cannot find "+ name+"'s hottest comment!") 
-	
-def replit_comments(self, name = None):
-	if name == None:
-		exit("ERROR: You didn't fill out the name parameter!")
-	else:
-		try:
-		post = requests.get("https://replit.com/@" + name + "?tab=comments")
-		soup = BeautifulSoup(post.content, 'html.parser')
-		all_text = []
-		for data in soup.find_all("p"):
-			all_text.append(data.get_text())
-		return '\n'.join(all_text)
-		except:
-		exit("ERROR: Cannot find "+name+"'s comments!")
+def replit_post(name = None):#latest post
+    if name == None:
+      exit("ERROR: You didn't fill out the name parameter!")
+    else:
+      #user = os.environ["REPL_OWNER"]
+      try:
+        post = requests.get("https://replit.com/@"+ name +"?tab=posts")#name
+        soup = BeautifulSoup(post.content, 'html.parser')
+        html1 = soup.find("div", {"class":"jsx-2329710370 board-post-list-item-post-title"}).get_text()
+        return html1
+        #b = a.replace('</div>','')
+        #return b
+      except:
+       exit("ERROR: Cannot find "+ name+"'s hottest post!")
+  
+def replit_posts(name = None):#all posts
+    if name == None:
+      exit("ERROR: You didn't fill out the name parameter!")
+    else:
+      try:
+        post = requests.get("https://replit.com/@"+ name +"?tab=posts")#name
+        soup = BeautifulSoup(post.content, 'html.parser')
+        html1 = soup.find_all("div", {"class":"jsx-2329710370 board-post-list-item-post-title"})#.get_text()
+        all_text = []
+        for i in html1:
+          all_text.append(i.get_text())
+        return '\n'.join(all_text)
+        
+      except:
+        exit("ERROR: Cannot find "+ name+"'s posts!")
+  
+def replit_comment(name = None):
+  if name == None:
+      exit("ERROR: You didn't fill out the name parameter!")
+  else:
+      try:
+        post = requests.get("https://replit.com/@" + name + "?tab=comments")
+        soup = BeautifulSoup(post.content, 'html.parser')
+        for data in soup.find("p"):
+          return (data.get_text())
+          break # keep this here so it prints once
+      except:
+        exit("ERROR: Cannot find "+ name+"'s hottest comment!") 
+  
+def replit_comments(name = None):
+    if name == None:
+      exit("ERROR: You didn't fill out the name parameter!")
+    else:
+      try:
+        post = requests.get("https://replit.com/@" + name + "?tab=comments")
+        soup = BeautifulSoup(post.content, 'html.parser')
+        all_text = []
+        for data in soup.find_all("p"):
+          all_text.append(data.get_text())
+        return '\n'.join(all_text)
+      except:
+        exit("ERROR: Cannot find "+name+"'s comments!")
+#print(replit_langs("Coder100"))
